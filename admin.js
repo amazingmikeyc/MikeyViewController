@@ -227,3 +227,22 @@ function centre(object) {
 	$(object).css("left",w + "px");
 	$(object).css("top",h + "px");
 }
+
+function loadComponent(componentName, args) {
+	var x = document.createElement("div");
+	
+	console.log(componentName);
+	
+	$.post('/' + componentName, args, function(data) {
+		$(x).html(data);
+	});
+	$(x).appendTo('#mainpane');
+	return x;
+}
+
+function popUpComponent(componentName, args) {
+	x = loadComponent(componentName, args)
+	
+	$(x).appendTo('#mainpane');
+	$(x).dialog();
+}

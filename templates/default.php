@@ -7,6 +7,13 @@
 <link rel="stylesheet" type="text/css" title="MikeyNet v3" href="/style.css" media="screen" />
 </head>
 <body>
+	<div id='navbar'>
+		<?php
+	//	$nav = new Navigation();
+	//	 $nav->display();
+	?>	
+	</div>
+	
 <div id='mainpane'>
 <div id='main'>
 <?php echo $values['component']->display(); ?>
