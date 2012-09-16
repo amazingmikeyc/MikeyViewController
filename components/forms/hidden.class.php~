@@ -1,0 +1,8 @@
+<?php
+//include_once('../component.class.php');
+
+class Input extends FormComponent {
+
+}
+
+

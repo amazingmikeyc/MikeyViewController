@@ -1,0 +1,245 @@
+@charset "utf-8";
+/*
+* Admin Panel CSS
+* Project of Haris (2009 March)
+*/
+
+/*
+	I got this from http://craxyharis.com/blog/2009/03/admin-panel-css-template/
+	then heavily modified it - Mikeynet.co.uk
+	*/
+
+#navbar {
+	width:100%;
+	height:30px;
+	font-size: 14px;
+	position:fixed;
+	top:0px;
+	left:0px;	
+	background: #F1F3F5;
+		border: 1px solid #cccccc;
+	
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	color : #333;
+	background-color : #FFF;
+	font-size : 11px;
+	font-family : Arial, Helvetica, sans-serif;
+}
+
+#main {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 15px;
+	border: 1px solid #cccccc;
+	width: 700px;
+	background: #F1F3F5;
+}
+
+#main input {
+	width:280px;	
+}
+#main textarea {
+	width:280px;
+	height:200px;
+}
+
+#main .label {
+	 width:150px;
+	 float:left;
+	 text-align:right;
+	 margin-right:5px;
+}
+	
+#form {
+    margin: 0px;
+}
+
+#main .button {
+	width:50px;	
+}
+
+.button {
+	border : solid 1px #cccccc;
+	background: #E9ECEF;
+	color : #666666;
+	font-weight : bold;
+	font-size : 11px;
+	padding: 4px;
+}
+
+.login {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 6em;
+	padding: 15px;
+	border: 1px solid #cccccc;
+	width: 429px;
+	background: #F1F3F5;
+}
+	
+.login p {
+	padding: 0 1em 0 1em;
+	}
+	
+.form-block {
+	border: 1px solid #cccccc;
+	background: #E9ECEF;
+	padding-top: 15px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+}
+
+.login-form {
+	text-align: left;
+	float: right;
+	width: 60%;
+}
+
+.inputlabel {
+	font-weight: bold;
+	text-align: left;
+}
+
+.inputbox {
+	width: 150px;
+	margin: 0 0 1em 0;
+	border
+}
+
+.clr {
+    clear:both;
+    }
+
+.ctr {
+	text-align: center;
+}
+
+.message {
+	margin-top: 10px; 
+	padding: 7px; 
+	width: 400px;
+	border: 1px solid #B22222;
+	background: #F1F3F5;
+	color: #B22222;	
+	font-weight: bold;
+	font-size: 13px;
+}
+
+ul#menu{
+	list-style-type:none;
+	width:100%;
+	position:relative;
+	height:27px;
+	font-family:"Trebuchet MS",Arial,sans-serif;
+	font-size:13px;
+	font-weight:bold;
+	margin:0;
+	padding:11px 0 0 0;
+}
+
+ul#menu li{
+	display:block;
+	float:left;
+	margin:0 0 0 4px;
+	height:27px;
+}
+
+ul#menu li.left{
+	margin:0;
+}
+
+ul#menu li a{
+	display:block;
+	float:left;
+	color:#000;
+	background:#F1F3F5;
+	line-height:27px;
+	text-decoration:none;
+	padding:0 17px 0 18px;
+	height:27px;
+}
+
+ul#menu li a.right{
+	padding-right:19px;
+}
+
+ul#menu li a:hover{
+	background:#cccccc;
+}
+
+ul#menu li a.current{
+	color:#000;
+	background:#cccccc;
+}
+
+ul#menu li a.current:hover{
+}
+
+#leftFloat
+{
+  float: left;
+  width: 500px;
+}
+
+#rightFloat
+{
+  float: right;
+  width: 200px;
+}
+
+.row1 {
+	background-color:#ffffff;	
+}
+
+ .row2 {
+	
+}
+
+table th {
+	cursor:pointer;	
+}
+
+.icon {
+	cursor:pointer;
+}
+
+#pager  a {
+	cursor:pointer;
+} 
+
+.popup {
+	
+	margin-top: 10px; 
+	padding: 7px; 
+	width: 400px;
+	border: 1px solid #B22222;
+	background: #F1F3F5;
+/*	color: #B22222;	
+	font-weight: bold;*/
+	font-size: 12px;
+	position:absolute;
+}
+
+.alert {
+	
+	margin-top: 10px; 
+	padding: 20px; 
+	width: 200px;
+	min-height:50px;
+	border: 1px solid #000000;
+	background: #f6ef7c;
+	cursor:pointer;
+	font-size: 16px;
+	position:fixed;
+}
+
+.datagrid table {
+	
+	border:1px black dotted;
+	
+}
