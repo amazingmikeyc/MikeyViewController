@@ -29,5 +29,3 @@ class DataGrid extends Component {
 	
 
 }
-
-?>

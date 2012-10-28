@@ -165,7 +165,7 @@ function ajaxSave(form) {
 	
 	//show busy icon in place of submit button
 	var image = document.createElement("img");
-	image.src = "/admin/images/ajax-loader.gif";
+	image.src = "/images/ajax-loader.gif";
 	$(image).insertAfter(form + " :submit");
 	$(image).show();
 	
@@ -176,19 +176,24 @@ function ajaxSave(form) {
 
 	
 	$.post($(form).attr("action") + "&ajax=1",serialised,function(data) {
+		
 		//bring them all back
 		$(form + " :submit").show();
 		
 		$(image).remove();
-		$(form + " input," + form + " select," + form + " textarea").attr("disabled","");
+		$(form + " input," + form + " select," + form + " textarea").removeAttr("disabled");
 		
-		eval(data);
+		data = eval(data);
 		
+		dialog(data.message);
+		
+		$(form + ' [name="id"]').val(data.id);
+
 	});
 }
 
 /**
-	shows a pop up box which will close when clicked
+	showshttp://api.jquery.com/attribute-equals-selector/ a pop up box which will close when clicked
 	html - HTML contents
 	time - time before it disappears automatically
 		0 means it won't disappear at all.

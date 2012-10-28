@@ -6,7 +6,17 @@ class Form extends Component {
 	private $_table;
 	private $_formID;
 
+	private $_formItems;
+	
+	private $_state;
+	
+	private $_insertId = '';
+
 	function __construct($table) {
+		
+		if (gettype($table)=='string') {
+			$table = new Object($table);
+		}
 
 		$this->_formID = md5(serialize($table).date('H:i:s'));
 	
@@ -28,34 +38,39 @@ class Form extends Component {
 			}
 		}
 		
-		$this->assign('formID',$this->_formID);
-		$this->assign('formitem',$formitems);
-
-		$this->assign('table',$this->_table);
+		$this->_state = 'normal';
+		
+		$this->_formItems = $formitems;
+		
+	
 	}
 
-	
 
 	function display() {
-	/*
-		foreach ($this->_table->structure() as $row) {
-			//print_r('<pre>'.print_r($row,1).'</pre>');		
+		
+		$this->assign('formID',$this->_formID);
+		$this->assign('formitem',$this->_formItems);
 
-			if ($row['Type']=='text') {
-				 include ('templates/textbox.php');
-			}
-			else {
-				include ('templates/text.php');
-			}
-	
-		}	
-*/
+		$this->assign('table',$this->_table);
+
+		$this->assign('state', $this->_state);
+
+		$this->assign('insertId', $this->_insertId);
 
 		parent::display();
 	}
 
 	function save($values) {
-		$this->_table->save($values);
+		$saved = $this->_table->save($values);
+				
+		if ($saved) {
+			$this->_state = 'saved';
+			
+			$this->_insertId = $saved;
+		}
+		else {
+			$this->_state = 'notsaved';
+		}
 	}
 	
 

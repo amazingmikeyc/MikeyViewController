@@ -27,16 +27,14 @@ class Controller extends Component {
 
 		if ($function) {
 			if (method_exists($this->_component,$function)) {
-				$this->_component->$function($_POST);
+				$this->_component->$function($_POST);				
 			}
 		}
 
-
-		$this->assign('component',$this->_component);
 	}
 
 	function display() {
-						
+		$this->assign('component',$this->_component);					
 
 		parent::display();
 	}

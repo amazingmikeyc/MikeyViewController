@@ -9,31 +9,31 @@ class Object  {
 
 	private $_primaryKey;
 
-	function __construct($table) {
-		
-		$sql = 'SHOW FULL COLUMNS FROM '.$table;
-		$result = $this->query($sql);
-
-		$this->_tableName = $table;
-
-		$fields = array();
-
-		while($record = mysql_fetch_assoc($result)) {
-echo '<pre>'.print_r($record,1).'</pre>';
-		        $fields[$record['Field']] = $record;
-
-			//Look for the primary key
-			if ($record['Key']=='PRI') {
-				$this->_primaryKey = $record['Field'];
-			}
-
-
-			//the form for 
-
-		}	
-
-		$this->_structure = $fields;
-
+	function __construct($table='') {
+		if ($table) {
+			$sql = 'SHOW FULL COLUMNS FROM '.$table;
+			$result = $this->query($sql);
+	
+			$this->_tableName = $table;
+	
+			$fields = array();
+	
+			while($record = mysql_fetch_assoc($result)) {
+	//echo '<pre>'.print_r($record,1).'</pre>';
+			        $fields[$record['Field']] = $record;
+	
+				//Look for the primary key
+				if ($record['Key']=='PRI') {
+					$this->_primaryKey = $record['Field'];
+				}
+	
+	
+				//the form for 
+	
+			}	
+	
+			$this->_structure = $fields;
+		}
 	}
 
 	function getTableName() {
@@ -71,19 +71,27 @@ echo '<pre>'.print_r($record,1).'</pre>';
 
 		//saves
 		//is the primary key set? Then we know to do an update.
-		if (isset($save[$this->_primaryKey])) {
+		if (isset($save[$this->_primaryKey]) && $save[$this->_primaryKey]) {
 			$sql = 'UPDATE '.$this->_tableName.' SET ';
 
+			$updates = array();
 			foreach ($save as $key=>$value) {
 				//Don't do an update on a primary key
 				if ($key!=$this->_primaryKey) {
-					$sql.=' `'.$key.'` = "'.mysql_real_escape_string($value).'"';
+					$updates[].=' `'.$key.'` = "'.mysql_real_escape_string($value).'" ';
 				}
 			}
-
+			$sql.= implode(', ',$updates);
+	
 			$sql .= ' WHERE `'.$this->_primaryKey.'` = "'.$save[$this->_primaryKey].'"';
+			
+			$result = $this->query($sql);
+		
+			$insertId = $save[$this->_primaryKey];
 		}
 		else {
+			unset($save[$this->_primaryKey]);
+			
 			$sql = 'INSERT INTO '.$this->_tableName.' (`';
 
 			$sql.=implode('`,`',array_keys($save));
@@ -92,9 +100,17 @@ echo '<pre>'.print_r($record,1).'</pre>';
 
 			$sql.=implode('","',$save);
 			$sql.='")';
+			
+			$result = $this->query($sql);
+			
+			$insertId = mysql_insert_id();
 		}
 
-		$this->query($sql);
+		
+	
+	
+	
+		return $insertId;
 	}
 
 	function primaryKey() {

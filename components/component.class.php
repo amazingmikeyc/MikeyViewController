@@ -28,10 +28,13 @@ class Component {
 
 	function display() {
 		$values = $this->vars;		
-
-
-		include($GLOBALS['rootdir'].'/templates/'.$this->_template.'.php');
-
+		foreach ($GLOBALS['paths'] as $path) {
+			if (file_exists($GLOBALS['rootdir'].'/templates/'.$path.'/'.strtolower($this->_template) . '.php')) {
+			
+				include $GLOBALS['rootdir'].'/templates/'.$path.'/'.strtolower($this->_template) . '.php';		
+			}
+		}
+	
 	}
 
 }
